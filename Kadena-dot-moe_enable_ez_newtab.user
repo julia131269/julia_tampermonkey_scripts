@@ -1,0 +1,29 @@
+// ==UserScript==
+// @name         Kadena.moe easy new tab option
+// @namespace    http://tampermonkey.net/
+// @version      0.2
+// @description  Makes the website open a new tab when you press anywhere with the middle mouse button
+// @author       Julia
+// @match        https://kadena.moe/*
+// @icon         https://files.catbox.moe/k9n78x.jpg
+// @grant        none
+// ==/UserScript==
+
+window.addEventListener('load', function() {
+    var logo = document.querySelector('.navbar-brand');// logo class may need to be updated based on site's html structure
+    if (logo) {
+        logo.addEventListener('auxclick', function(event) {
+            if (event.button == 1) { // 1 is the middle button
+                window.open(logo.href, '_blank');
+                event.preventDefault();
+            }
+        });
+    }
+}, false);
+
+window.addEventListener('auxclick', function(event) {
+    if (event.button == 1) { // 1 is the middle button
+        window.open('https://kadena.moe', '_blank');
+        event.preventDefault();
+    }
+}, false);
