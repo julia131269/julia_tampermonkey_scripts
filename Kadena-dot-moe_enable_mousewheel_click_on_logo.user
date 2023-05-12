@@ -1,0 +1,22 @@
+// ==UserScript==
+// @name         Kadena.moe enable mousewheel click on logo
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  Makes the logo right clickable |I think| and clickable with the middle button |<-- gonna work 100%|
+// @author       Julia
+// @match        https://kadena.moe/*
+// @icon         https://files.catbox.moe/k9n78x.jpg
+// @grant        none
+// ==/UserScript==
+
+window.addEventListener('load', function() {
+    var logo = document.querySelector('.navbar-brand');// logo class may need to be updated based on site's html structure
+    if (logo) {
+        logo.addEventListener('auxclick', function(event) {
+            if (event.button == 1) { // 1 is the middle button
+                window.open(logo.href, '_blank');
+                event.preventDefault();
+            }
+        });
+    }
+}, false);
